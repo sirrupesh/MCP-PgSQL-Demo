@@ -40,9 +40,15 @@ docker run -it --rm -v .:/opt --network my-nw postgres:latest pg_restore -h demo
 
 ### 4. Cleanup
 # Remove downloaded and extracted files
-rm dvdrental.*
+rm dvdrental.tar dvdrental.zip
 
 ## Note
 - The database will be restored to the PostgreSQL instance running in Docker
 - Default username is 'postgres'
 - You will be prompted for the password when running the restore command
+
+## Database Schema Diagram
+<embed src="./docs/database-schema.pdf" type="application/pdf" width="100%" height="600px" />
+
+<!-- Add a direct download link as fallback -->
+[Download Database Schema PDF](./docs/database-schema.pdf)
