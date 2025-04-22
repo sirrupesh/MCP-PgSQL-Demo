@@ -1,0 +1,31 @@
+# Docker Compose configuration for DVD Rental Database
+# This configuration sets up a PostgreSQL container for the DVD Rental sample database
+
+version: '3.8'  # Specify docker-compose version
+
+services:  
+  # PostgreSQL Database Service
+  postgres:
+    image: postgres:latest    # Use the latest PostgreSQL image
+    container_name: demo_postgres_container
+    environment:
+      # Database configuration
+      POSTGRES_USER: postgres           # Default superuser
+      POSTGRES_PASSWORD: password       # Superuser password (change in production)
+      POSTGRES_DB: mydatabase          # Default database name
+    
+    ports:
+      - "5432:5432"    # Map container's PostgreSQL port to host
+    
+    volumes:
+      # Persist database data
+      - ../mydemo_dbdata/.postgres_data:/var/lib/postgresql/data
+    
+    networks:
+      - my-nw         # Attach to custom network
+
+# Network Configuration
+networks:
+  my-nw:
+    name: my-nw      # Custom network name
+    driver: bridge   # Use bridge network driver
